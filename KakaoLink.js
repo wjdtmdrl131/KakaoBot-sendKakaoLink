@@ -85,7 +85,7 @@ exports.Kakao = function() {
     var response = org.jsoup.Jsoup.connect('https://accounts.kakao.com/weblogin/authenticate.json').header("User-Agent", this.static.userAgent).header('Referer', this.loginReferer).cookies(this.cookies).data(logindata).ignoreContentType(true).method(org.jsoup.Connection.Method.POST).execute();
     var status = JSON.parse(response.body()).status;
     if (status == -450) {
-      throw new ReferenceError('email이나 password가 올바르지 않습니다. email과 password를 다시 확인해주세요.');
+      throw new ReferenceError('email 이나 password 이가 올바르지 않습니다. email과 password를 다시 확인해주세요.');
     }
     if(status != 0) {
       throw new Error('로그인 중 에러가 발생하였습니다.\n' + response.body());
