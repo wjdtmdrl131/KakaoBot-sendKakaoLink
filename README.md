@@ -10,7 +10,7 @@ kakao.login('email', 'password');
 
 function response(room, msg, sender, isGroupChat, replier, imageDB, packageName) {
   if (msg.startsWith('멜론 ')) {
-    var doc = org.jsoup.Jsoup.parse(Utils.getWebText('https://m.search.daum.net/search?w=music&m=song&nil_search=btn&DA=NTB&q' + msg.substr(3)));
+    var doc = org.jsoup.Jsoup.parse(Utils.getWebText('https://m.search.daum.net/search?w=music&m=song&nil_search=btn&DA=NTB&q=' + msg.substr(3)));
     var title = doc.select('strong.tit-g').eq(0).text();
     var artist = doc.select('p.desc').eq(0).text();
     var img = doc.select('img').attr('data-original-src');
