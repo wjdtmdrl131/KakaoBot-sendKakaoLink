@@ -14,7 +14,7 @@ exports.Kakao = function() {
   }
   Kakao.prototype.init = function(apiKey) {
     if (typeof apiKey != 'string' || apiKey.length != 32) {
-      throw new TypeError('API 키 ' + apiKey + ' 는 올바르지 않은 API 키 입니다.');
+      throw new Error('API 키 ' + apiKey + ' 는 올바르지 않은 API 키 입니다.');
     }
     this.apiKey = apiKey;
     return true;
@@ -85,7 +85,7 @@ exports.Kakao = function() {
     var response = org.jsoup.Jsoup.connect('https://accounts.kakao.com/weblogin/authenticate.json').header("User-Agent", this.static.userAgent).header('Referer', this.loginReferer).cookies(this.cookies).data(logindata).ignoreContentType(true).method(org.jsoup.Connection.Method.POST).execute();
     var status = JSON.parse(response.body()).status;
     if (status == -450) {
-      throw new ReferenceError('email 이나 password 이가 올바르지 않습니다. email과 password를 다시 확인해주세요.');
+      throw new Error('email 이나 password 이가 올바르지 않습니다. email과 password를 다시 확인해주세요.');
     }
     if(status != 0) {
       throw new Error('로그인 중 에러가 발생하였습니다.\n' + response.body());
