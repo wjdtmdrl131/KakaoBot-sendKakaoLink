@@ -27,7 +27,7 @@ exports.Kakao = function() {
     }
   }
   Kakao.prototype.static = {
-    kakaoAgent: 'sdk/1.36.6 os/javascript lang/en-US device/Win32 origin/http%3A%2F%2Fmagenta.kro.kr',
+    kakaoAgent: 'sdk/1.36.6 os/javascript lang/en-US device/Win32 origin/http%3A%2F%2Flt2.kr',
     userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36',
     contentType: 'application/x-www-form-urlencoded'
   }
