@@ -1,15 +1,12 @@
-"use strict";
-exports.__esModule = true;
 /*
 CryptoJS v3.1.2
 code.google.com/p/crypto-js
 (c) 2009-2013 by Jeff Mott. All rights reserved.
 code.google.com/p/crypto-js/wiki/License
 */
-// @ts-nocheck
 var CryptoJS = CryptoJS || function (u, p) {
-    var d = {}, l = d.lib = {}, s = function () { }, t = l.Base = { extend: function (a) { s.prototype = this; var c = new s; a && c.mixIn(a); c.hasOwnProperty("init") || (c.init = function () { c.$super.init.apply(this, arguments); }); c.init.prototype = c; c.$super = this; return c; }, create: function () { var a = this.extend(); a.init.apply(a, arguments); return a; }, init: function () { }, mixIn: function (a) { for (var c in a)
-            a.hasOwnProperty(c) && (this[c] = a[c]); a.hasOwnProperty("toString") && (this.toString = a.toString); }, clone: function () { return this.init.prototype.extend(this); } }, r = l.WordArray = t.extend({ init: function (a, c) { a = this.words = a || []; this.sigBytes = c != p ? c : 4 * a.length; }, toString: function (a) { return (a || v).stringify(this); }, concat: function (a) { var c = this.words, e = a.words, j = this.sigBytes; a = a.sigBytes; this.clamp(); if (j % 4)
+    var d = {}, l = d.lib = {}, s = function () { }, t = l.Base = { extend: function (a) { s.prototype = this; var c = new s; a && c.mixIn(a); c.hasOwnProperty('init') || (c.init = function () { c.$super.init.apply(this, arguments); }); c.init.prototype = c; c.$super = this; return c; }, create: function () { var a = this.extend(); a.init.apply(a, arguments); return a; }, init: function () { }, mixIn: function (a) { for (var c in a)
+            a.hasOwnProperty(c) && (this[c] = a[c]); a.hasOwnProperty('toString') && (this.toString = a.toString); }, clone: function () { return this.init.prototype.extend(this); } }, r = l.WordArray = t.extend({ init: function (a, c) { a = this.words = a || []; this.sigBytes = c != p ? c : 4 * a.length; }, toString: function (a) { return (a || v).stringify(this); }, concat: function (a) { var c = this.words, e = a.words, j = this.sigBytes; a = a.sigBytes; this.clamp(); if (j % 4)
             for (var k = 0; k < a; k++)
                 c[j + k >>> 2] |= (e[k >>> 2] >>> 24 - 8 * (k % 4) & 255) << 24 - 8 * ((j + k) % 4);
         else if (65535 < e.length)
@@ -26,18 +23,18 @@ var CryptoJS = CryptoJS || function (u, p) {
             var k = c[j >>> 2] >>> 24 - 8 * (j % 4) & 255;
             e.push((k >>> 4).toString(16));
             e.push((k & 15).toString(16));
-        } return e.join(""); }, parse: function (a) {
+        } return e.join(''); }, parse: function (a) {
             for (var c = a.length, e = [], j = 0; j < c; j += 2)
                 e[j >>> 3] |= parseInt(a.substr(j, 2), 16) << 24 - 4 * (j % 8);
             return new r.init(e, c / 2);
         } }, b = w.Latin1 = { stringify: function (a) { var c = a.words; a = a.sigBytes; for (var e = [], j = 0; j < a; j++)
-            e.push(String.fromCharCode(c[j >>> 2] >>> 24 - 8 * (j % 4) & 255)); return e.join(""); }, parse: function (a) { for (var c = a.length, e = [], j = 0; j < c; j++)
+            e.push(String.fromCharCode(c[j >>> 2] >>> 24 - 8 * (j % 4) & 255)); return e.join(''); }, parse: function (a) { for (var c = a.length, e = [], j = 0; j < c; j++)
             e[j >>> 2] |= (a.charCodeAt(j) & 255) << 24 - 8 * (j % 4); return new r.init(e, c); } }, x = w.Utf8 = { stringify: function (a) { try {
             return decodeURIComponent(escape(b.stringify(a)));
         }
         catch (c) {
-            throw Error("Malformed UTF-8 data");
-        } }, parse: function (a) { return b.parse(unescape(encodeURIComponent(a))); } }, q = l.BufferedBlockAlgorithm = t.extend({ reset: function () { this._data = new r.init; this._nDataBytes = 0; }, _append: function (a) { "string" == typeof a && (a = x.parse(a)); this._data.concat(a); this._nDataBytes += a.sigBytes; }, _process: function (a) { var c = this._data, e = c.words, j = c.sigBytes, k = this.blockSize, b = j / (4 * k), b = a ? u.ceil(b) : u.max((b | 0) - this._minBufferSize, 0); a = b * k; j = u.min(4 * a, j); if (a) {
+            throw Error('Malformed UTF-8 data');
+        } }, parse: function (a) { return b.parse(unescape(encodeURIComponent(a))); } }, q = l.BufferedBlockAlgorithm = t.extend({ reset: function () { this._data = new r.init; this._nDataBytes = 0; }, _append: function (a) { 'string' == typeof a && (a = x.parse(a)); this._data.concat(a); this._nDataBytes += a.sigBytes; }, _process: function (a) { var c = this._data, e = c.words, j = c.sigBytes, k = this.blockSize, b = j / (4 * k), b = a ? u.ceil(b) : u.max((b | 0) - this._minBufferSize, 0); a = b * k; j = u.min(4 * a, j); if (a) {
             for (var q = 0; q < a; q += k)
                 this._doProcessBlock(e, q);
             q = e.splice(0, a);
@@ -55,14 +52,13 @@ var CryptoJS = CryptoJS || function (u, p) {
     var n = d.algo = {};
     return d;
 }(Math);
-exports.CryptoJS = CryptoJS;
 (function () {
     var u = CryptoJS, p = u.lib.WordArray;
     u.enc.Base64 = { stringify: function (d) { var l = d.words, p = d.sigBytes, t = this._map; d.clamp(); d = []; for (var r = 0; r < p; r += 3)
             for (var w = (l[r >>> 2] >>> 24 - 8 * (r % 4) & 255) << 16 | (l[r + 1 >>> 2] >>> 24 - 8 * ((r + 1) % 4) & 255) << 8 | l[r + 2 >>> 2] >>> 24 - 8 * ((r + 2) % 4) & 255, v = 0; 4 > v && r + 0.75 * v < p; v++)
                 d.push(t.charAt(w >>> 6 * (3 - v) & 63)); if (l = t.charAt(64))
             for (; d.length % 4;)
-                d.push(l); return d.join(""); }, parse: function (d) {
+                d.push(l); return d.join(''); }, parse: function (d) {
             var l = d.length, s = this._map, t = s.charAt(64);
             t && (t = d.indexOf(t), -1 != t && (l = t));
             for (var t = [], r = 0, w = 0; w <
@@ -73,7 +69,7 @@ exports.CryptoJS = CryptoJS;
                     r++;
                 }
             return p.create(t, r);
-        }, _map: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=" };
+        }, _map: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=' };
 })();
 (function (u) {
     function p(b, n, a, c, e, j, k) { b = b + (n & a | ~n & c) + e + k; return (b << j | b >>> 32 - j) + n; }
@@ -126,7 +122,7 @@ exports.CryptoJS = CryptoJS;
 })();
 CryptoJS.lib.Cipher || function (u) {
     var p = CryptoJS, d = p.lib, l = d.Base, s = d.WordArray, t = d.BufferedBlockAlgorithm, r = p.enc.Base64, w = p.algo.EvpKDF, v = d.Cipher = t.extend({ cfg: l.extend(), createEncryptor: function (e, a) { return this.create(this._ENC_XFORM_MODE, e, a); }, createDecryptor: function (e, a) { return this.create(this._DEC_XFORM_MODE, e, a); }, init: function (e, a, b) { this.cfg = this.cfg.extend(b); this._xformMode = e; this._key = a; this.reset(); }, reset: function () { t.reset.call(this); this._doReset(); }, process: function (e) { this._append(e); return this._process(); },
-        finalize: function (e) { e && this._append(e); return this._doFinalize(); }, keySize: 4, ivSize: 4, _ENC_XFORM_MODE: 1, _DEC_XFORM_MODE: 2, _createHelper: function (e) { return { encrypt: function (b, k, d) { return ("string" == typeof k ? c : a).encrypt(e, b, k, d); }, decrypt: function (b, k, d) { return ("string" == typeof k ? c : a).decrypt(e, b, k, d); } }; } });
+        finalize: function (e) { e && this._append(e); return this._doFinalize(); }, keySize: 4, ivSize: 4, _ENC_XFORM_MODE: 1, _DEC_XFORM_MODE: 2, _createHelper: function (e) { return { encrypt: function (b, k, d) { return ('string' == typeof k ? c : a).encrypt(e, b, k, d); }, decrypt: function (b, k, d) { return ('string' == typeof k ? c : a).decrypt(e, b, k, d); } }; } });
     d.StreamCipher = v.extend({ _doFinalize: function () { return this._process(!0); }, blockSize: 1 });
     var b = p.mode = {}, x = function (e, a, b) {
         var c = this._iv;
@@ -169,7 +165,7 @@ CryptoJS.lib.Cipher || function (u) {
             b.splice(0, 4);
             a.sigBytes -= 16;
         } return n.create({ ciphertext: a, salt: c }); } }, a = d.SerializableCipher = l.extend({ cfg: l.extend({ format: b }), encrypt: function (a, b, c, d) { d = this.cfg.extend(d); var l = a.createEncryptor(c, d); b = l.finalize(b); l = l.cfg; return n.create({ ciphertext: b, key: c, iv: l.iv, algorithm: a, mode: l.mode, padding: l.padding, blockSize: a.blockSize, formatter: d.format }); },
-        decrypt: function (a, b, c, d) { d = this.cfg.extend(d); b = this._parse(b, d.format); return a.createDecryptor(c, d).finalize(b.ciphertext); }, _parse: function (a, b) { return "string" == typeof a ? b.parse(a, this) : a; } }), p = (p.kdf = {}).OpenSSL = { execute: function (a, b, c, d) { d || (d = s.random(8)); a = w.create({ keySize: b + c }).compute(a, d); c = s.create(a.words.slice(b), 4 * c); a.sigBytes = 4 * b; return n.create({ key: a, iv: c, salt: d }); } }, c = d.PasswordBasedCipher = a.extend({ cfg: a.cfg.extend({ kdf: p }), encrypt: function (b, c, d, l) {
+        decrypt: function (a, b, c, d) { d = this.cfg.extend(d); b = this._parse(b, d.format); return a.createDecryptor(c, d).finalize(b.ciphertext); }, _parse: function (a, b) { return 'string' == typeof a ? b.parse(a, this) : a; } }), p = (p.kdf = {}).OpenSSL = { execute: function (a, b, c, d) { d || (d = s.random(8)); a = w.create({ keySize: b + c }).compute(a, d); c = s.create(a.words.slice(b), 4 * c); a.sigBytes = 4 * b; return n.create({ key: a, iv: c, salt: d }); } }, c = d.PasswordBasedCipher = a.extend({ cfg: a.cfg.extend({ kdf: p }), encrypt: function (b, c, d, l) {
             l = this.cfg.extend(l);
             d = l.kdf.execute(d, b.keySize, b.ivSize);
             l.iv = d.iv;
@@ -225,4 +221,4 @@ CryptoJS.lib.Cipher || function (u) {
         }, keySize: 8 });
     u.AES = p._createHelper(d);
 })();
-exports.CryptoJS = CryptoJS;
+module.exports = CryptoJS;
